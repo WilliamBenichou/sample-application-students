@@ -1,4 +1,4 @@
-sudo: false
 language: java
-mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-mvn clean verify
+sudo: false # faster builds
+
+script: "mvn clean verify"
