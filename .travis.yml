@@ -1,7 +1,9 @@
 language: java
 sudo: false
-script: "mvn clean verify"
-script: "docker-compose up"
-script: "docker login -u dockerHubLogin -p dockerHubPass"
-script: "docker push dockerHubLogin/tp2_db"
-script: "docker push dockerHubLogin/tp2_api"
+script: 
+    - "mvn clean verify"
+    - "docker build -t dockerHubLogin/api ./sample-application-http-api-server"
+    - "docker build -t dockerHubLogin/db ./sample-application-db-changelog-job"
+    - "docker login -u dockerHubLogin -p dockerHubPass"
+    - "docker push dockerHubLogin/tp2_db"
+    - "docker push dockerHubLogin/tp2_api"
