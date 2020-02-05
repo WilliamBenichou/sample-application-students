@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+    http:
+        build: ./sample-application-http-api-server
+        image: williambenichou/tp2_api
+        container_name: tp2_api
+        networks:
+            - db_api_shared
+        depends_on:
+            - database
+    database:
+        build: ./sample-application-db-changelog-job
+        image: williambenichou/tp2_db
+        container_name: tp2_db
+        networks:
+            - db_api_shared
+networks:
+    db_api_shared:
+        driver: bridge
